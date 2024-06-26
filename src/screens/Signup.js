@@ -88,13 +88,13 @@ export default function Signup() {
           </div>
 
           <div className="mb-3">
-            <label htmlFor="exampleInputPassword1" className="form-label">
+            <label htmlFor="geolocationeg" className="form-label">
               Address
             </label>
             <input
               type="text"
               className="form-control"
-              id="exampleInputPassword1"
+              id="geolocationeg"
               name="geolocation"
               value={credentials.geolocation}
               onChange={onChange}

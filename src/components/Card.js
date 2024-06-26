@@ -1,14 +1,16 @@
 import React from 'react'
 
-export default function Card() {
+export default function Card(props) {
+  let options=props.options;
+  let priceOptions=Object.keys(options);
+
   return (
     <div><div>
     <div className="card mt-3" style={{"width": "18rem","maxHeight":"360px"}}>
-      <img className="card-img-top" src="https://images.unsplash.com/photo-1488523665057-a818cdf6f5e6?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8Zm9vZHMlMjA5MDB4NzAwfGVufDB8MHwwfHx8MA%3D%3D" alt="..." />
+      <img className="card-img-top" src={props.imgSrc} alt="..." style={{height:"120px" ,objectFit:"fill"}} />
       <div className="card-body">
-        <h5 className="card-title">Card title</h5>
-        <p className="card-text"/>
-      This is some Important text.
+        <h5 className="card-title">{props.foodName}</h5>
+      
       <div className="container w-100">
         <select className="m-2 h-100  bg-success rounded">
             {Array.from(Array(6),(e,i)=>{
@@ -19,8 +21,9 @@ export default function Card() {
         </select>
 
         <select className="m-2 h-100  bg-success rounded">
-            <option value="half">Half</option>
-            <option value="full">Full</option>
+           {priceOptions.map((data)=>{
+            return<option key={data} value={data}>{data}</option>
+           })}
 
         </select>
 

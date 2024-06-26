@@ -3,6 +3,7 @@ import React from "react";
 export default function Carousal() {
   return (
     <div>
+      <div>
       <div
         id="carouselExampleFade"
         className="carousel slide carousel-fade"
@@ -54,6 +55,7 @@ export default function Carousal() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }
