@@ -1,23 +1,30 @@
 // Example using Bootstrap Navbar component
 import React from "react";
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "bootstrap/js/src/collapse.js";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
-
+import Badge from "react-bootstrap/Badge";
+import Model from "../Model";
+import Cart from "../screens/Cart";
+import { useCart } from "./ContextReducer";
 
 export default function NavBar() {
+const [cartView,setCartView]=useState(false);
+
+let data=useCart();
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("authToken");
     navigate("/login");
   };
 
-    const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+
+ 
 
   return (
-   
-      <nav className="navbar navbar-expand-lg navbar-dark bg-success">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-success">
       <div className="container-fluid">
         <Link className="navbar-brand fs-1 fst-italic " to="/">
           Foody
@@ -30,11 +37,14 @@ export default function NavBar() {
           aria-controls="navbarNav"
           aria-expanded={expanded}
           aria-label="Toggle navigation"
-          onClick={()=>setExpanded(!expanded)}
+          onClick={() => setExpanded(!expanded)}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className={`collapse navbar-collapse ${expanded ?'show':''}`} id="navbarSupportedContent" >
+        <div
+          className={`collapse navbar-collapse ${expanded ? "show" : ""}`}
+          id="navbarSupportedContent"
+        >
           <ul className="navbar-nav me-auto mb-2">
             <li className="nav-item">
               <Link className="nav-link active fs-6" to="/">
@@ -51,8 +61,15 @@ export default function NavBar() {
           </ul>
           {localStorage.getItem("authToken") ? (
             <div className="d-flex">
-              <div className="btn bg-white text-success mx-1">My Cart</div>
-              <div className="btn bg-white text-danger mx-1" onClick={handleLogout}>
+              <div className="btn bg-white text-success mx-2" onClick={()=>setCartView(true)}>
+                My Cart{" "}
+                <Badge pill bg="danger">{data.length}</Badge>
+                </div>
+                {cartView? <Model onClose={()=>setCartView(false)}><Cart/></Model>:null}
+              <div
+                className="btn bg-white text-danger mx-1"
+                onClick={handleLogout}
+              >
                 Logout
               </div>
             </div>
@@ -69,7 +86,5 @@ export default function NavBar() {
         </div>
       </div>
     </nav>
-  
   );
-};
-
+}
