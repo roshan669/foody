@@ -10,6 +10,7 @@ const MODAL_STYLES = {
   zIndex: 1000,
   height: '90%',
   width: '90%',
+  borderRadius: '25px',
 };
 
 const OVERLAY_STYLE = {
@@ -20,17 +21,18 @@ const OVERLAY_STYLE = {
   bottom: 0,
   backgroundColor: 'rgba(0, 0, 0, 0.7)',
   zIndex: 1000,
+  
 };
 
 export default function Model({ children, onClose }) {
   return ReactDOM.createPortal(
-    <div>
+    <div >
       <div style={OVERLAY_STYLE} />
     
 
      
       <div style={MODAL_STYLES}>
-      <button className='btn btn-danger'style={{marginTop:"15px",marginLeft:"92%"}} onClick={onClose}>
+      <button className='btn btn-danger'style={{marginTop:"15px",marginLeft:"90%",borderRadius:"10px"}} onClick={onClose}>
         X
         </button>
         {children}

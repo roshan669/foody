@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Signup() {
+  const navigate=useNavigate();
   const [credentials, setcredentials] = useState({
     name: "",
     email: "",
@@ -39,6 +40,11 @@ export default function Signup() {
   const onChange = (event) => {
     setcredentials({ ...credentials, [event.target.name]: event.target.value });
   };
+
+  const submit=()=>{
+    navigate("/login");
+    
+  }
   return (
     <>
       <div className="container">
@@ -101,7 +107,7 @@ export default function Signup() {
             />
           </div>
 
-          <button type="submit" className=" m-3 btn btn-succcess">
+          <button type="submit" className=" m-3 btn btn-succcess" onClick={submit}>
             Submit
           </button>
           <Link to="/login" className="m-3 btn btn-danger">
