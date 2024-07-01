@@ -21,16 +21,16 @@ export default function Card(props) {
     }
     if(food !==[]){
       if(food.size===size){
-        await dispatch({type:"UPDATE",id:props.foodItem._id,price:finalPrice,qty:qty })
+        await dispatch({type:"UPDATE",id:props.foodItem._id,price:finalPrice,qty:qty,img:props.foodItem.img })
         return
       }
       else if(food.size !==size){
-        await dispatch({type:"ADD",id:props.foodItem._id,name:props.foodItem.name,price:finalPrice,qty:qty,size:size})
+        await dispatch({type:"ADD",id:props.foodItem._id,name:props.foodItem.name,price:finalPrice,qty:qty,size:size,img:props.foodItem.img})
         return
         }
         return
     }
-    await dispatch({type:"ADD",id:props.foodItem._id,name:props.foodItem.name,price:finalPrice,qty:qty,size:size})
+    await dispatch({type:"ADD",id:props.foodItem._id,name:props.foodItem.name,price:finalPrice,qty:qty,size:size,img:props.foodItem.img})
   }
   useEffect(() => {
     console.log('Cart data updated:', data);

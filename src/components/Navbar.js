@@ -53,7 +53,7 @@ let data=useCart();
             </li>
             {localStorage.getItem("authToken") && (
               <li className="nav-item">
-                <Link className="nav-link active fs-6" to="/my-orders">
+                <Link className="nav-link active fs-6" to="/myOrder">
                   My Orders
                 </Link>
               </li>
